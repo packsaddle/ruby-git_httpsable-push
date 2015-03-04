@@ -25,7 +25,7 @@ module GitHttpsable
           force: options[:force],
           tags: options[:tags]
         }
-        repo = Repository.new
+        repo = Repository.new('.')
         repo.push(args[0], args[1], params)
       rescue StandardError => e
         suggest_messages(options)

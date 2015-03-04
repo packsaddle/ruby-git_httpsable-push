@@ -1,6 +1,12 @@
 module GitHttpsable
   module Push
     class Repository
+      attr_reader :git
+
+      def initialize(path, options = {})
+        @git = ::Git.open(path, options)
+      end
+
       def push(remote = 'origin', branch = 'master', options = {})
         # check current branch's upstream remote and branch
         logger.debug(remote: remote, branch: branch, options: options)

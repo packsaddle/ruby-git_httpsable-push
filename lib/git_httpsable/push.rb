@@ -1,4 +1,5 @@
 require 'logger'
+require 'git'
 
 require 'git_httpsable/push/repository'
 require 'git_httpsable/push/version'
