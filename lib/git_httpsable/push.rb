@@ -1,5 +1,6 @@
 require 'logger'
 require 'git'
+require 'addressable/uri'
 
 require 'git_httpsable/push/error'
 require 'git_httpsable/push/repository'
