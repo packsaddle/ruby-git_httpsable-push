@@ -17,6 +17,8 @@ module GitHttpsable
       desc 'push', 'Git Push via HTTPS'
       option :debug, type: :boolean, default: false
       option :verbose, type: :boolean, default: false
+      option :force, type: :boolean, default: false, aliases: '-f'
+      option :tags, type: :boolean, default: false
       def push(*args)
         setup_logger(options)
 
