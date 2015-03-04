@@ -14,6 +14,19 @@ module GitHttpsable
         puts "GitHttpsable::Push version #{::GitHttpsable::Push::VERSION}"
       end
 
+      desc 'push', 'Push via HTTPS'
+      def push(*params)
+        puts 'push :)'
+        puts params
+      end
+      default_command :push
+
+      # http://stackoverflow.com/a/23955971/104080
+      def method_missing(method, *args)
+        args = [:push, method.to_s] + args
+        self.class.start(args)
+      end
+
       no_commands do
         def logger
           ::GitHttpsable::Push.logger
