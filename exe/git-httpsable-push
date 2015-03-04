@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'git_httpsable/push'
+require 'git_httpsable/push/cli'
+GitHttpsable::Push::CLI.start(ARGV)
