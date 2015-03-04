@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['sanemat']
   spec.email         = ['o.gata.ken@gmail.com']
 
-  spec.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  spec.description   = 'TODO: Write a longer description or delete this line.'
+  spec.summary       = '`git push` to https repo securely.'
+  spec.description   = '`git push` to https repo securely.'
   spec.homepage      = 'https://github.com/packsaddle/ruby-git_httpsable-push'
   spec.license       = 'MIT'
 
