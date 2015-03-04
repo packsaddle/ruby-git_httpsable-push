@@ -14,10 +14,17 @@ module GitHttpsable
         puts "GitHttpsable::Push version #{::GitHttpsable::Push::VERSION}"
       end
 
-      desc 'push', 'Push via HTTPS'
+      desc 'push', 'Git Push via HTTPS'
+      option :debug, type: :boolean, default: false
+      option :verbose, type: :boolean, default: false
       def push(*params)
+        setup_logger(options)
+
         puts 'push :)'
         puts params
+      rescue StandardError => e
+        suggest_messages(options)
+        raise e
       end
       default_command :push
 
@@ -42,7 +49,7 @@ module GitHttpsable
         end
 
         def suggest_messages(options)
-          logger.error 'Have a question? Please ask me:'
+          logger.error 'Have a question? Please ask us:'
           logger.error ISSUE_URL
           logger.error 'options:'
           logger.error options
