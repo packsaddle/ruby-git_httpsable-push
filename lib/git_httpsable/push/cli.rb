@@ -28,11 +28,6 @@ module GitHttpsable
       end
       default_command :push
 
-      # http://stackoverflow.com/a/23955971/104080
-      def method_missing(method, *args)
-        self.class.start([self.class.default_command, method.to_s] + args)
-      end
-
       no_commands do
         def logger
           ::GitHttpsable::Push.logger
@@ -52,6 +47,11 @@ module GitHttpsable
           logger.error ISSUE_URL
           logger.error 'options:'
           logger.error options
+        end
+
+        # http://stackoverflow.com/a/23955971/104080
+        def method_missing(method, *args)
+          self.class.start([self.class.default_command, method.to_s] + args)
         end
       end
     end
