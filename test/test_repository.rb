@@ -11,8 +11,22 @@ module GitHttpsable
         test 'no remote' do
           git = stub(remote: nil)
           @repo.stubs(:git).returns(git)
-          assert 'then return nil' do
-            @repo.remote_url('origin') == nil
+          assert do
+            @repo.remote_url('origin').nil?
+          end
+        end
+        test 'remote, but no url' do
+          git = stub(remote: stub(url: nil))
+          @repo.stubs(:git).returns(git)
+          assert do
+            @repo.remote_url('origin').nil?
+          end
+        end
+        test 'remote and url' do
+          git = stub(remote: stub(url: 'remote-url'))
+          @repo.stubs(:git).returns(git)
+          assert 'then return url' do
+            @repo.remote_url('origin') == 'remote-url'
           end
         end
       end
