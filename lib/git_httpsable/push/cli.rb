@@ -30,8 +30,7 @@ module GitHttpsable
 
       # http://stackoverflow.com/a/23955971/104080
       def method_missing(method, *args)
-        args = [:push, method.to_s] + args
-        self.class.start(args)
+        self.class.start([self.class.default_command, method.to_s] + args)
       end
 
       no_commands do
