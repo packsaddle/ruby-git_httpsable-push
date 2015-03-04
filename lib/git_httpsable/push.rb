@@ -1,4 +1,4 @@
-require "git_httpsable/push/version"
+require 'git_httpsable/push/version'
 
 module GitHttpsable
   module Push
