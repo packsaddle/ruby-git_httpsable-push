@@ -21,9 +21,12 @@ module GitHttpsable
       option :tags, type: :boolean, default: false
       def push(*args)
         setup_logger(options)
-
-        puts 'push :)'
-        puts args
+        params = {
+          force: options[:force],
+          tags: options[:tags]
+        }
+        repo = Repository.new
+        repo.push(args[0], args[1], params)
       rescue StandardError => e
         suggest_messages(options)
         raise e
