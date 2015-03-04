@@ -17,11 +17,11 @@ module GitHttpsable
       desc 'push', 'Git Push via HTTPS'
       option :debug, type: :boolean, default: false
       option :verbose, type: :boolean, default: false
-      def push(*params)
+      def push(*args)
         setup_logger(options)
 
         puts 'push :)'
-        puts params
+        puts args
       rescue StandardError => e
         suggest_messages(options)
         raise e
