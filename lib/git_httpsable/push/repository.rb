@@ -9,6 +9,7 @@ module GitHttpsable
       def push(remote = 'origin', branch = 'master', options = {})
         # check current branch's upstream remote and branch?
         url = remote_url(remote)
+        fail NotExistRemoteUrlError, %(no "#{remote}" url) unless url
 
         logger.debug(remote: converted_url, branch: branch, options: options)
       end
@@ -22,9 +23,7 @@ module GitHttpsable
       end
 
       def remote_url(remote)
-        url = git.remote(remote) && git.remote(remote).url
-        fail NotExistRemoteUrlError, %(no "#{remote}" url) unless url
-        url
+        git.remote(remote) && git.remote(remote).url
       end
     end
   end
