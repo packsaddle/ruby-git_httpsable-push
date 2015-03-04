@@ -1,10 +1,9 @@
 module GitHttpsable
   module Push
     class Repository
-      attr_reader :git
-
       def initialize(path, options = {})
-        @git = ::Git.open(path, options)
+        @path = path
+        @options = options
       end
 
       def push(remote = 'origin', branch = 'master', options = {})
@@ -14,6 +13,10 @@ module GitHttpsable
 
       def logger
         ::GitHttpsable::Push.logger
+      end
+
+      def git
+        @git ||= ::Git.open(@path, @options)
       end
     end
   end
