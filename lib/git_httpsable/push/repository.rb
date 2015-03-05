@@ -16,13 +16,14 @@ module GitHttpsable
           parsed = Addressable::URI.parse(url)
         end
 
-        converted_url = URI::Generic.build(
-                             scheme: scheme,
-                             userinfo: userinfo,
-                             host: host(parsed.host),
-                             port: port,
-                             path: parsed.path
-        )
+        converted_url = \
+          URI::Generic.build(
+            scheme: scheme,
+            userinfo: userinfo,
+            host: host(parsed.host),
+            port: port,
+            path: parsed.path
+          )
         logger.debug(remote: converted_url, branch: branch, options: options)
       end
 
