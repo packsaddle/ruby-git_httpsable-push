@@ -43,7 +43,7 @@ module GitHttpsable
       end
 
       def env_git_access_token
-        ENV['GIT_ACCESS_TOKEN']
+        ENV['GIT_SERVER_ACCESS_TOKEN']
       end
 
       def userinfo
@@ -57,15 +57,15 @@ module GitHttpsable
       end
 
       def scheme
-        ENV['GIT_SCHEME'] || 'https'
+        ENV['GIT_SERVER_SCHEME'] || 'https'
       end
 
       def host(host)
-        ENV['GIT_HOST'] || host
+        ENV['GIT_SERVER_HOST'] || host
       end
 
       def port
-        ENV['GIT_PORT'] || nil
+        ENV['GIT_SERVER_PORT'] || nil
       end
     end
   end
