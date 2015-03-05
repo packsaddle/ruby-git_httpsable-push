@@ -24,14 +24,12 @@ module GitHttpsable
         output = git.push(converted_url, branch, options)
         logger.info(output: output)
         output
-      rescue URI::InvalidComponentError => e
-        # require mask
-        puts e.message
-        puts e.backtrace
-      rescue Git::GitExecuteError => e
-        # require mask
-        puts e.message
-        puts e.backtrace
+      rescue StandardError => e
+        raise e if e.kind_of?(GitHttpsablePushError)
+
+        exception = GitHttpsablePushError.new(e.class.name + ' : ' + e.message)
+        exception.set_backtrace(e.backtrace)
+        raise exception
       end
 
       def logger
