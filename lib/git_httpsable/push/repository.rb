@@ -3,7 +3,7 @@ module GitHttpsable
     class Repository
       def initialize(path, options = {})
         @path = path
-        @options = options
+        @options = { log: logger }.merge(options)
       end
 
       def push(remote = 'origin', branch = 'master', options = {})
