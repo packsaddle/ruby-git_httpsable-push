@@ -30,6 +30,59 @@ module GitHttpsable
           end
         end
       end
+      sub_test_case '#git_clone_url_parse' do
+        def setup
+          @repo = Repository.new('.')
+        end
+        git_url = 'git://github.com/schacon/ticgit.git'
+        ssh_url = 'git@github.com:schacon/ticgit.git'
+        https_url = 'https://github.com/schacon/ticgit.git'
+        test 'git protocol host' do
+          assert do
+            @repo.git_clone_url_parse(git_url).host == 'github.com'
+          end
+        end
+        test 'git protocol scheme' do
+          assert do
+            @repo.git_clone_url_parse(git_url).scheme == 'git'
+          end
+        end
+        test 'git protocol path' do
+          assert do
+            @repo.git_clone_url_parse(git_url).path == '/schacon/ticgit.git'
+          end
+        end
+        test 'ssh protocol host' do
+          assert do
+            @repo.git_clone_url_parse(ssh_url).host == 'github.com'
+          end
+        end
+        test 'ssh protocol scheme' do
+          assert do
+            @repo.git_clone_url_parse(ssh_url).scheme.nil?
+          end
+        end
+        test 'ssh protocol path' do
+          assert do
+            @repo.git_clone_url_parse(ssh_url).path == '/schacon/ticgit.git'
+          end
+        end
+        test 'https protocol host' do
+          assert do
+            @repo.git_clone_url_parse(https_url).host == 'github.com'
+          end
+        end
+        test 'https protocol scheme' do
+          assert do
+            @repo.git_clone_url_parse(https_url).scheme == 'https'
+          end
+        end
+        test 'https protocol path' do
+          assert do
+            @repo.git_clone_url_parse(https_url).path == '/schacon/ticgit.git'
+          end
+        end
+      end
     end
   end
 end
