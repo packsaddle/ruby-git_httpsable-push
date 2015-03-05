@@ -7,6 +7,7 @@ module GitHttpsable
       end
 
       def push(remote = 'origin', branch = 'master', options = {})
+        logger.debug(remote: remote, branch: branch, options: options)
         # check current branch's upstream remote and branch?
         url = remote_url(remote)
         fail NotExistRemoteUrlError, %(no "#{remote}" url) unless url
@@ -20,7 +21,15 @@ module GitHttpsable
             port: port,
             path: parsed.path
           )
-        logger.debug(remote: converted_url, branch: branch, options: options)
+        output = git.push(converted_url, branch, options)
+        logger.info(output: output)
+        output
+      rescue URI::InvalidComponentError => e
+        puts e.message
+        puts e.backtrace
+      rescue Git::GitExecuteError => e
+        puts e.message
+        puts e.backtrace
       end
 
       def logger
