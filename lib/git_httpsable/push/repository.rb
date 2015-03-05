@@ -27,7 +27,7 @@ module GitHttpsable
       rescue StandardError => e
         raise e if e.kind_of?(GitHttpsablePushError)
 
-        exception = GitHttpsablePushError.new(e.class.name + ' : ' + e.message)
+        exception = GitHttpsablePushError.new('(' + e.class.name + ') ' + e.message)
         exception.set_backtrace(e.backtrace)
         raise exception
       end
