@@ -10,11 +10,7 @@ module GitHttpsable
         # check current branch's upstream remote and branch?
         url = remote_url(remote)
         fail NotExistRemoteUrlError, %(no "#{remote}" url) unless url
-        if URI::SshGit.ssh_protocol?(url)
-          parsed = URI::SshGit.parse(url)
-        else
-          parsed = Addressable::URI.parse(url)
-        end
+        parsed = git_clone_url_parse(url)
 
         converted_url = \
           URI::Generic.build(
@@ -67,6 +63,14 @@ module GitHttpsable
 
       def port
         ENV['GIT_SERVER_PORT'] || nil
+      end
+
+      def git_clone_url_parse(url)
+        if URI::SshGit.ssh_protocol?(url)
+          URI::SshGit.parse(url)
+        else
+          Addressable::URI.parse(url)
+        end
       end
     end
   end
