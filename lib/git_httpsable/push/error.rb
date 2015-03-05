@@ -7,11 +7,12 @@ module GitHttpsable
       end
 
       def mask_token(text)
-        text.gsub(%r(://[^/@]*@)) { '://MASKED@' }
+        text.gsub(%r{://[^/@]*@}) { '://MASKED@' }
       end
     end
 
     class NotExistRemoteUrlError < GitHttpsablePushError; end
+    class NotExistLocalBranchError < GitHttpsablePushError; end
     class NoAuthDataError < GitHttpsablePushError; end
   end
 end
