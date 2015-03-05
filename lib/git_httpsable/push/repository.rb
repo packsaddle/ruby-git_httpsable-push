@@ -25,9 +25,11 @@ module GitHttpsable
         logger.info(output: output)
         output
       rescue URI::InvalidComponentError => e
+        # require mask
         puts e.message
         puts e.backtrace
       rescue Git::GitExecuteError => e
+        # require mask
         puts e.message
         puts e.backtrace
       end
