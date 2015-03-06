@@ -93,6 +93,25 @@ Or install it yourself as:
 
     $ gem install git_httpsable-push
 
+## Commands
+
+```
+  git-httpsable-push help [COMMAND]  # Describe available commands or one specific command
+  git-httpsable-push push            # Git Push via HTTPS
+  git-httpsable-push version         # Show the GitHttpsable::Push version
+
+Usage:
+  git-httpsable-push push
+
+Options:
+      [--debug], [--no-debug]
+      [--verbose], [--no-verbose]
+  -f, [--force]
+      [--tags], [--no-tags]
+
+Git Push via HTTPS
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec git_httpsable-push` to use the code located in this directory, ignoring other installed copies of this gem.
