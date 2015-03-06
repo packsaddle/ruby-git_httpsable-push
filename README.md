@@ -16,7 +16,9 @@ require `GITHUB_ACEESS_TOKEN`.
 git httpsable-push origin master
 ```
 
-This always masks your token.
+Whether you set git protocol or https protocol or ssh protocol, you push via https.
+
+And this always masks your token.
 
 e.g.
 
