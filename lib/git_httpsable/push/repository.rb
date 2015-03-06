@@ -21,9 +21,7 @@ module GitHttpsable
             port: port,
             path: parsed.path
           )
-        output = git.push(converted_url.to_s, branch, options)
-        logger.info(output: output)
-        output
+        git.push(converted_url.to_s, branch, options)
       rescue StandardError => e
         raise e if e.is_a?(GitHttpsablePushError)
 
