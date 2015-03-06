@@ -3,7 +3,7 @@ module GitHttpsable
     class Repository
       def initialize(path, options = {})
         @path = path
-        @options = options
+        @options = { log: logger }.merge(options)
       end
 
       def push(remote = 'origin', branch = 'master', options = {})
@@ -11,7 +11,7 @@ module GitHttpsable
         # check current branch's upstream remote and branch?
         url = remote_url(remote)
         fail NotExistRemoteUrlError, %(no "#{remote}" url) unless url
-        parsed = git_clone_url_parse(url)
+        parsed = GitCloneUrl.parse(url)
 
         converted_url = \
           URI::Generic.build(
@@ -21,17 +21,15 @@ module GitHttpsable
             port: port,
             path: parsed.path
           )
-        output = git.push(converted_url, branch, options)
+        output = git.push(converted_url.to_s, branch, options)
         logger.info(output: output)
         output
-      rescue URI::InvalidComponentError => e
-        # require mask
-        puts e.message
-        puts e.backtrace
-      rescue Git::GitExecuteError => e
-        # require mask
-        puts e.message
-        puts e.backtrace
+      rescue StandardError => e
+        raise e if e.is_a?(GitHttpsablePushError)
+
+        exception = GitHttpsablePushError.new('(' + e.class.name + ') ' + e.message)
+        exception.set_backtrace(e.backtrace)
+        raise exception
       end
 
       def logger
@@ -74,14 +72,6 @@ module GitHttpsable
 
       def port
         ENV['GIT_SERVER_PORT'] || nil
-      end
-
-      def git_clone_url_parse(url)
-        if URI::SshGit.ssh_protocol?(url)
-          URI::SshGit.parse(url)
-        else
-          Addressable::URI.parse(url)
-        end
       end
     end
   end

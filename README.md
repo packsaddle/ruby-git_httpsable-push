@@ -3,8 +3,6 @@
 [![Gem Version](http://img.shields.io/gem/v/git_httpsable-push.svg?style=flat)](http://badge.fury.io/rb/git_httpsable-push)
 [![Build Status](http://img.shields.io/travis/packsaddle/ruby-git_httpsable-push/master.svg?style=flat)](https://travis-ci.org/packsaddle/ruby-git_httpsable-push)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/git_httpsable/push`. To experiment with that code, run `bin/console` for an interactive prompt.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,8 +20,6 @@ Or install it yourself as:
     $ gem install git_httpsable-push
 
 ## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
