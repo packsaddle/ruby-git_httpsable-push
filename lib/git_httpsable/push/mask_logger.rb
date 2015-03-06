@@ -3,9 +3,9 @@ module GitHttpsable
     class MaskLogger < Logger
       def initialize(*args)
         super(*args)
-        @progname = 'GitHttpsable::Push'
-        @level = Logger::WARN
-        @formatter = proc do |severity, datetime, progname, msg|
+        self.progname = 'GitHttpsable::Push'
+        self.level = Logger::WARN
+        self.formatter = proc do |severity, datetime, progname, msg|
           @default_formatter.call(
             severity,
             datetime,
