@@ -1,5 +1,5 @@
 module GitHttpsable
   module Push
-    VERSION = '0.0.1.beta2'
+    VERSION = '0.1.0'
   end
 end
