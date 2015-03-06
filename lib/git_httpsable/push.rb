@@ -12,7 +12,7 @@ module GitHttpsable
   module Push
     ISSUE_URL = 'https://github.com/packsaddle/ruby-git_httpsable-push/issues/new'
     def self.default_logger
-      MaskLogger.new(STDERR)
+      MaskLogger.new($stderr)
     end
 
     def self.logger
