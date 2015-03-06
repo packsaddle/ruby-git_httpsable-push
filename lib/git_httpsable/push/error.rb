@@ -12,7 +12,6 @@ module GitHttpsable
     end
 
     class NotExistRemoteUrlError < GitHttpsablePushError; end
-    class NotExistLocalBranchError < GitHttpsablePushError; end
     class NoAuthDataError < GitHttpsablePushError; end
   end
 end
