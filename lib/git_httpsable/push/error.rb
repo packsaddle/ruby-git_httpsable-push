@@ -3,7 +3,7 @@ module GitHttpsable
     class GitHttpsablePushError < StandardError
       def initialize(message = nil)
         return super unless message
-        super(mask_token(message))
+        super(mask_token(message.to_s))
       end
 
       def mask_token(text)
