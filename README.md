@@ -96,6 +96,7 @@ Or install it yourself as:
 ## Commands
 
 ```
+Commands:
   git-httpsable-push help [COMMAND]  # Describe available commands or one specific command
   git-httpsable-push push            # Git Push via HTTPS
   git-httpsable-push version         # Show the GitHttpsable::Push version
