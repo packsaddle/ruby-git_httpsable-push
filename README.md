@@ -5,7 +5,8 @@
 
 ## Description
 
-Keep your `git push` via https **Safely**.
+* Easy to set up `git push` via `https://...`.
+* Keep your `git push` via https **Safely**.
 
 ## Usage
 
@@ -13,19 +14,22 @@ require `GITHUB_ACEESS_TOKEN`.
 
 ```bash
 # like git push
-git httpsable-push origin master
+$ git httpsable-push origin master
 ```
 
-Whether you set git protocol or https protocol or ssh protocol, you push via https.
+Whether you set `git://...` or `https://...` or `git@...`, you can push via `https://...`.
 
 And this always masks your token.
 
 e.g.
 
 ```
-# success
+$ git config --get remote.origin.url
+git@github.com:packsaddle/ruby-git_httpsable-push.git
 # GITHUB_ACCESS_TOKEN=__MY_TOKEN__
-bundle exec exe/git-httpsable-push origin refactor/logger-to-class --verbose
+
+# success
+$ git httpsable-push origin refactor/logger-to-class --verbose
 I, [2015-03-06T19:29:54.250481 #33391]  INFO -- GitHttpsable::Push: Starting Git
 I, [2015-03-06T19:29:54.270408 #33391]  INFO -- GitHttpsable::Push: git '--git-dir=/Users/sane/work/ruby-study/git_httpsable-push/.git' '--work-tree=/Users/sane/work/ruby-study/git_httpsable-push' config '--list'  2>&1
 I, [2015-03-06T19:29:54.281424 #33391]  INFO -- GitHttpsable::Push: git '--git-dir=/Users/sane/work/ruby-study/git_httpsable-push/.git' '--work-tree=/Users/sane/work/ruby-study/git_httpsable-push' config '--list'  2>&1
@@ -33,8 +37,7 @@ I, [2015-03-06T19:29:56.632766 #33391]  INFO -- GitHttpsable::Push: git '--git-d
 I, [2015-03-06T19:29:56.632944 #33391]  INFO -- GitHttpsable::Push: {:output=>nil}
 
 # error occurs
-# GITHUB_ACCESS_TOKEN=__MY_TOKEN__
-bundle exec exe/git-httpsable-push origin refactor/logger-to-class --verbose
+$ git httpsable-push origin refactor/logger-to-class --verbose
 I, [2015-03-06T19:33:47.692967 #34984]  INFO -- GitHttpsable::Push: Starting Git
 I, [2015-03-06T19:33:47.701617 #34984]  INFO -- GitHttpsable::Push: git '--git-dir=/Users/sane/work/ruby-study/git_httpsable-push/.git' '--work-tree=/Users/sane/work/ruby-study/git_httpsable-push' config '--list'  2>&1
 I, [2015-03-06T19:33:47.711167 #34984]  INFO -- GitHttpsable::Push: git '--git-dir=/Users/sane/work/ruby-study/git_httpsable-push/.git' '--work-tree=/Users/sane/work/ruby-study/git_httpsable-push' config '--list'  2>&1
@@ -67,7 +70,7 @@ fatal: Authentication failed for 'https://MASKED@github.com/packsaddle/ruby-git_
 * `git push --quiet`, set remote url manually, error to `/dev/null`
 
 ```
-git push --quiet https://$GH_TOKEN@github.com/<repos_name>.git gh-pages 2> /dev/null
+$ git push --quiet https://$GH_TOKEN@github.com/<repos_name>.git gh-pages 2> /dev/null
 ```
 
 This can push safely,
