@@ -19,7 +19,7 @@ module GitHttpsable
             userinfo: userinfo,
             host: host(parsed.host),
             port: port,
-            path: parsed.path
+            path: absolute_path(parsed.path)
           )
         git.push(converted_url.to_s, branch, options)
       rescue StandardError => e
@@ -70,6 +70,10 @@ module GitHttpsable
 
       def port
         ENV['GIT_SERVER_PORT'] || nil
+      end
+
+      def absolute_path(path)
+        path.start_with?('/') ? path : '/' + path
       end
     end
   end
